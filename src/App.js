@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Roulette from './components/Roulette';
 
-import Button from '@mui/material/Button';
 
 function App() {
   const testAxios = () => {
@@ -13,13 +12,14 @@ function App() {
   };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button onClick={testAxios}>Click me</Button>
+      <header className="header-img">
       </header>
+      <Roulette></Roulette>
+      <footer className="footer">
+        <div class="footer-content">
+          powered by BentoBandits
+        </div>
+      </footer>
     </div>
   );
 }

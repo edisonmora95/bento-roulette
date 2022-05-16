@@ -1,4 +1,6 @@
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Grid, Modal, Typography } from "@mui/material";
+import RecommendationsForm from "./form";
+import Recommendation from "./recommendation";
 
 function RecommendationsModal(props) {
     const {
@@ -11,7 +13,7 @@ function RecommendationsModal(props) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: 1000,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -22,9 +24,14 @@ function RecommendationsModal(props) {
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Text in a modal
-                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                        <RecommendationsForm />
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Recommendation />
+                    </Grid>
+                </Grid>
             </Box>
         </Modal>
     );

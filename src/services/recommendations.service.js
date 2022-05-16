@@ -23,9 +23,10 @@ class RecommendationsService {
 
             const url = "/recommendations";
             const response = await this._apiService.post(url, data);
-            console.log(response.data);
+            return response.data;
         } catch (error) {
             console.log("getRecommendations - error", error);
+            throw error;
         }
     }
 }

@@ -1,4 +1,6 @@
-import { Box, Grid, Modal, Typography } from "@mui/material";
+import { Box, Grid, Modal } from "@mui/material";
+import { useState } from "react";
+import RecommendationsService from "../../services/recommendations.service";
 import RecommendationsForm from "./form";
 import Recommendation from "./recommendation";
 
@@ -7,6 +9,8 @@ function RecommendationsModal(props) {
         isOpen = false,
         handleClose,
     } = props;
+
+    const [recommendation, setRecommendation] = useState({});
 
     const style = {
         position: 'absolute',
@@ -20,16 +24,31 @@ function RecommendationsModal(props) {
         p: 4,
     };
 
+    const submitHandler = async (priceRange, address) => {
+        try {
+            const recommendationService = new RecommendationsService();
+            const payload = {
+                price_range: priceRange,
+                address,
+            };
+            const result = await recommendationService.getRecommendations(payload);
+            console.log(result);
+            setRecommendation(result);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <Box sx={style}>
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
-                        <RecommendationsForm />
+                        <RecommendationsForm submitHandler={submitHandler}  />
                     </Grid>
                     <Grid item xs={8}>
-                        <Recommendation />
+                        <Recommendation {...recommendation}/>
                     </Grid>
                 </Grid>
             </Box>

@@ -1,0 +1,14 @@
+.recommendation .recommendation-footer {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.recommendation .recommendation-btn {
+    width: 80%;
+}
+
+.recommendation .recommendation-img-container {
+    display: flex;
+    align-items: center;
+}

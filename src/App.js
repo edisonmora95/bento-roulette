@@ -1,7 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+
+import Button from '@mui/material/Button';
 
 function App() {
+  const testAxios = () => {
+    const data = new FormData();
+    data.append("price_range", "$$");
+    data.append("address", "83-33 118th St, Kew Gardens");
+    axios.post("https://localtest.me:8000/recommendations", data);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +18,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button onClick={testAxios}>Click me</Button>
       </header>
     </div>
   );

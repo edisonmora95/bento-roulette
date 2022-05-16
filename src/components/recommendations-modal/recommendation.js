@@ -1,15 +1,26 @@
-import { Button, Grid } from "@mui/material";
+import { Button, CircularProgress, Grid } from "@mui/material";
 
 import "./recommendation.css";
 
 export default function Recommendation(props) {
     const {
-        logo,
-        name,
-        cuisine,
-        domain,
-        meta_description,
+        recommendation: {
+            logo,
+            name,
+            cuisine,
+            domain,
+            meta_description,
+        } = {},
+        isLoading = false,
     } = props;
+
+    if (isLoading) {
+        return (
+            <div className="recommendation-loading">
+                <CircularProgress />
+            </div>
+        );
+    }
 
     if (!name) {
         return (<></>);

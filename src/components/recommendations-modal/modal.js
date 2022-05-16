@@ -52,7 +52,7 @@ function RecommendationsModal(props) {
                         <RecommendationsForm submitHandler={submitHandler} isLoading={isLoading} />
                     </Grid>
                     <Grid item xs={8}>
-                        <Recommendation {...recommendation}/>
+                        <Recommendation recommendation={recommendation} isLoading={isLoading}/>
                     </Grid>
                 </Grid>
             </Box>

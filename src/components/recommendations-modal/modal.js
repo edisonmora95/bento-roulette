@@ -11,6 +11,7 @@ function RecommendationsModal(props) {
     } = props;
 
     const [recommendation, setRecommendation] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const style = {
         position: 'absolute',
@@ -26,6 +27,7 @@ function RecommendationsModal(props) {
 
     const submitHandler = async (priceRange, address) => {
         try {
+            setIsLoading(true);
             const recommendationService = new RecommendationsService();
             const payload = {
                 price_range: priceRange,
@@ -34,8 +36,10 @@ function RecommendationsModal(props) {
             const result = await recommendationService.getRecommendations(payload);
             console.log(result);
             setRecommendation(result);
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
+            setIsLoading(false);
         }
     };
 
@@ -45,7 +49,7 @@ function RecommendationsModal(props) {
             <Box sx={style}>
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
-                        <RecommendationsForm submitHandler={submitHandler}  />
+                        <RecommendationsForm submitHandler={submitHandler} isLoading={isLoading} />
                     </Grid>
                     <Grid item xs={8}>
                         <Recommendation {...recommendation}/>

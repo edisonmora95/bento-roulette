@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function RecommendationsForm(props) {
     const {
         submitHandler,
+        isLoading,
     } = props;
     const [priceRange, setPriceRange] = useState("$");
     const [address, setAddress] = useState("");
@@ -29,7 +30,7 @@ export default function RecommendationsForm(props) {
                     <option value="$$">Regular</option>
                     <option value="$">Cheap</option>
                 </select>
-                <Button class="button-59" onClick={onSubmitClick}>Submit</Button>
+                <Button disabled={isLoading} class="button-59" onClick={onSubmitClick}>Submit</Button>
             </form>
         </div>
     );

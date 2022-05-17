@@ -12,6 +12,7 @@ function RecommendationsModal(props) {
 
     const [recommendation, setRecommendation] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const style = {
         position: 'absolute',
@@ -26,20 +27,25 @@ function RecommendationsModal(props) {
     };
 
     const submitHandler = async (priceRange, address) => {
-        try {
-            setIsLoading(true);
-            const recommendationService = new RecommendationsService();
-            const payload = {
-                price_range: priceRange,
-                address,
-            };
-            const result = await recommendationService.getRecommendations(payload);
-            console.log(result);
-            setRecommendation(result);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
-            setIsLoading(false);
+        if (!address){
+            setError("Please input an address.");
+        } else {
+            setError("")
+            try {
+                setIsLoading(true);
+                const recommendationService = new RecommendationsService();
+                const payload = {
+                    price_range: priceRange,
+                    address,
+                };
+                const result = await recommendationService.getRecommendations(payload);
+                console.log(result);
+                setRecommendation(result);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error);
+                setIsLoading(false);
+            }
         }
     };
 
@@ -49,7 +55,8 @@ function RecommendationsModal(props) {
             <Box sx={style}>
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
-                        <RecommendationsForm submitHandler={submitHandler} isLoading={isLoading} />
+                        <h2>Let us recommend you something tasty!</h2>
+                        <RecommendationsForm submitHandler={submitHandler} isLoading={isLoading} error={error}/>
                     </Grid>
                     <Grid item xs={8}>
                         <Recommendation recommendation={recommendation} isLoading={isLoading}/>

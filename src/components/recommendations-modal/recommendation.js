@@ -77,7 +77,7 @@ export default function Recommendation(props) {
     };
 
     return (
-        <Grid container spacing={2} className="recommendation" sx={{marginLeft: '5%'}}>
+        <Grid container spacing={2} className="recommendation">
             <Grid className="recommendation-img-container" item xs={4}>
                 <img src={logo} width={200} alt="Store logo"/>
             </Grid>

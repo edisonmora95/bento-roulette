@@ -9,6 +9,7 @@ export default function Recommendation(props) {
             name,
             cuisine,
             domain,
+            tld,
             meta_description,
         } = {},
         isLoading = false,
@@ -71,7 +72,7 @@ export default function Recommendation(props) {
     }
 
     const onVisitStoreClick = () => {
-        const url = `https://${domain}.bentosandbox.com`;
+        const url = `https://${domain}.${tld}`;
         window.open(url, "_blank");
     };
 

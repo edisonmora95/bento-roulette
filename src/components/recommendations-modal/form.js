@@ -8,7 +8,7 @@ export default function RecommendationsForm(props) {
         isLoading,
         error
     } = props;
-    const [priceRange, setPriceRange] = useState("$");
+    const [priceRange, setPriceRange] = useState("all");
     const [address, setAddress] = useState("");
 
     const inputStyles = [{
@@ -98,7 +98,7 @@ export default function RecommendationsForm(props) {
                 <br/>
                 <label class="price-range-label"><strong >Price Range</strong></label>
                 <select class="form-select feedback-input" aria-label="Price Range" onChange={onPriceChange}>
-                    <option value="all">All Price ranges</option>
+                    <option value="all" selected>All Price ranges</option>
                     <option value="$$$$">$$$$</option>
                     <option value="$$$">$$$</option>
                     <option value="$$">$$</option>
